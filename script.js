@@ -4,9 +4,8 @@ function addTask() {
     const input = document.getElementById("taskInput");
     let text = input.value.trim();
 
-    // validação simples
     if (text === "") {
-        alert("não pode ser vazio né...");
+        alert("digita algo ai po");
         return;
     }
 
@@ -29,8 +28,37 @@ function renderTasks() {
 
     tasks.forEach(task => {
         const li = document.createElement("li");
-        li.innerText = task.text;
+
+        const span = document.createElement("span");
+        span.innerText = task.text;
+
+        if (task.completed) {
+            span.classList.add("completed");
+        }
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = task.completed;
+
+        checkbox.onclick = () => toggleTask(task.id);
+
+        li.appendChild(span);
+        li.appendChild(checkbox);
 
         list.appendChild(li);
     });
+}
+
+function toggleTask(id) {
+    tasks = tasks.map(task => {
+        if (task.id === id) {
+            return {
+                ...task,
+                completed: !task.completed
+            };
+        }
+        return task;
+    });
+
+    renderTasks();
 }
