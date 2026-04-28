@@ -2,9 +2,18 @@ let tasks = [];
 
 function addTask() {
     const input = document.getElementById("taskInput");
+    let text = input.value.trim();
+
+    // validação simples
+    if (text === "") {
+        alert("não pode ser vazio né...");
+        return;
+    }
 
     const task = {
-        text: input.value
+        id: Date.now(),
+        text: text,
+        completed: false
     };
 
     tasks.push(task);
@@ -21,6 +30,7 @@ function renderTasks() {
     tasks.forEach(task => {
         const li = document.createElement("li");
         li.innerText = task.text;
+
         list.appendChild(li);
     });
 }
