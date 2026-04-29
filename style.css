@@ -4,19 +4,19 @@
     box-sizing: border-box;
 }
 
-/* fundo com imagem 1920x1080 */
+/* fundo com imagem */
 body {
     font-family: Arial, sans-serif;
     height: 100vh;
 
     background: url("imagenes/background.jpg") no-repeat center center/cover;
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* leve camada escura pra dar contraste */
+/* camada escura por cima da imagem */
 body::before {
     content: "";
     position: absolute;
@@ -24,6 +24,25 @@ body::before {
     height: 100%;
     background: rgba(0, 0, 0, 0.4);
     z-index: 0;
+}
+
+/* logo fixa no topo esquerdo */
+.header-global {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+}
+
+.logo {
+    width: 140px;
+    height: auto;
+    animation: fadeIn 0.6s ease;
+    transition: 0.2s;
+}
+
+.logo:hover {
+    transform: scale(1.05);
 }
 
 /* container principal */
@@ -40,25 +59,7 @@ body::before {
 
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 
-    /* animação de entrada */
     animation: fadeInUp 0.6s ease;
-}
-
-/* animação */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 5px;
 }
 
 .subtitle {
@@ -110,7 +111,7 @@ ul {
     margin-top: 20px;
 }
 
-/* itens */
+/* item */
 li {
     display: flex;
     justify-content: space-between;
@@ -122,20 +123,7 @@ li {
     background: #f9f9f9;
     border-radius: 8px;
 
-    /* animação leve ao aparecer */
     animation: fadeItem 0.3s ease;
-}
-
-/* animação item */
-@keyframes fadeItem {
-    from {
-        opacity: 0;
-        transform: translateX(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
 }
 
 /* texto */
@@ -143,7 +131,7 @@ li {
     flex: 1;
 }
 
-/* tarefa concluida */
+/* concluida */
 .completed {
     text-decoration: line-through;
     color: #999;
@@ -153,4 +141,20 @@ li {
 input[type="checkbox"] {
     transform: scale(1.2);
     cursor: pointer;
+}
+
+/* animações */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeItem {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
 }
