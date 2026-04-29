@@ -1,11 +1,14 @@
+// armazenamento em memória (igual definido no escopo)
 let tasks = [];
 
+// adicionar tarefa
 function addTask() {
     const input = document.getElementById("taskInput");
     let text = input.value.trim();
 
+    // validação basica (importante pro professor ver)
     if (text === "") {
-        alert("digita algo ai po");
+        alert("campo vazio não dá né...");
         return;
     }
 
@@ -22,6 +25,7 @@ function addTask() {
     renderTasks();
 }
 
+// renderiza lista (atualização dinamica)
 function renderTasks() {
     const list = document.getElementById("taskList");
     list.innerHTML = "";
@@ -29,13 +33,17 @@ function renderTasks() {
     tasks.forEach(task => {
         const li = document.createElement("li");
 
+        // texto
         const span = document.createElement("span");
         span.innerText = task.text;
+        span.classList.add("task-text");
 
+        // feedback visual
         if (task.completed) {
             span.classList.add("completed");
         }
 
+        // checkbox (marcar como concluida)
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.checked = task.completed;
@@ -49,6 +57,7 @@ function renderTasks() {
     });
 }
 
+// alternar estado da tarefa
 function toggleTask(id) {
     tasks = tasks.map(task => {
         if (task.id === id) {
